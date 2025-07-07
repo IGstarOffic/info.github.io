@@ -140,11 +140,23 @@
     }
 
     @media (max-width: 768px) {
-      .main-content h1 { font-size: 2em; }
-      .main-content p  { font-size: 1em; padding: 0 10px; }
-      .nav { flex-direction: column; gap: 10px; }
-      .header { flex-direction: column; align-items: flex-start; }
+      .header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav {
+        flex-direction: row;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .language-switcher {
+        flex-shrink: 0;
+      }
     }
+
 
     .footer-icon svg {
       transition: stroke 0.3s ease;
@@ -284,7 +296,7 @@
     js: ["const x=1;", "function f(){ }", "console.log('Hi, IGstar!')", "async ()=>{}"]
   };
   const particles = [];
-  const MAX = 5, REPULSION=150, FORCE=.8, PARTICLE_REPULSION=80;
+  const MAX = 20, REPULSION=150, FORCE=.8, PARTICLE_REPULSION=80;
   const w2 = window.innerWidth/2, h2 = window.innerHeight/2;
 
   function getRandomLifetime() {
