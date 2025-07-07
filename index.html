@@ -29,10 +29,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 0;
-      position: fixed;
-      z-index: 10;
-      width: 95%;
+      padding: 15px 16px; /* Добавь паддинг слева и справа */
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      flex-wrap: wrap;
     }
 
     .language-switcher {
@@ -144,19 +145,20 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+        gap: 10px;
       }
 
       .nav {
         flex-direction: row;
         gap: 10px;
-        margin-top: 10px;
       }
 
       .language-switcher {
-        flex-shrink: 0;
+        display: flex;
+        gap: 8px;
+        align-items: center;
       }
     }
-
 
     .footer-icon svg {
       transition: stroke 0.3s ease;
@@ -164,6 +166,22 @@
     }
     .footer-icon:hover svg {
       stroke: #538aca;
+    }
+
+    @media (max-width: 300px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start; /* или center — на твой вкус */
+      }
+
+      .nav {
+        margin-top: 40px;
+        align-self: flex-start;
+      }
+    }
+
+    * {
+      box-sizing: border-box; /* ← чтобы padding не ломал ширину */
     }
 
   </style>
