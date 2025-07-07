@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IGstarInfo</title>
   <link rel="icon" href="favicon-16x16.png" type="image/png">
   <style>
@@ -29,7 +29,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 16px; /* Добавь паддинг слева и справа */
+      padding: 15px 16px;
       max-width: 100%;
       box-sizing: border-box;
       overflow: hidden;
@@ -96,12 +96,16 @@
     }
 
     .main-content {
-      text-align: center; margin-top: 150px;
-      position: relative; z-index: 5;
+      text-align: center;
+      margin-top: 150px;
+      position: relative;
+      z-index: 5;
+      padding: 0 20px;
     }
 
     .main-content h1 {
-      font-size: 4em; color: #538aca;
+      font-size: 4em;
+      color: #538aca;
       font-family: 'Montserrat', sans-serif;
       margin-bottom: 10px;
     }
@@ -109,13 +113,19 @@
     .main-content p {
       font-size: 1.2em;
       color: #fff;
+      line-height: 1.5;
     }
+
     #cursor {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: #538aca;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 6;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 6;
       transform: translate(-50%, -50%);
       transition: width 0.2s ease,
       height 0.2s ease,
@@ -135,55 +145,130 @@
     .code-particle.html   { color: rgba(73,102,126,0.5); }
     .code-particle.css    { color: rgba(73,102,126,0.5); }
     .code-particle.js     { color: rgba(73,102,126,0.5); }
+
     .circle-particle {
       border: 1px solid rgba(83,138,202,0.3);
       border-radius: 50%;
     }
 
-    @media (max-width: 768px) {
-      .header {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-      }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 16px 0;
+      background-color: #161a1c;
+      z-index: 1;
+    }
 
-      .nav {
-        flex-direction: row;
-        gap: 10px;
-      }
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .language-switcher {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
+    .footer-icons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    .footer-copyright {
+      margin-top: 8px;
+      font-size: 0.9em;
+      color: #aaa;
+      opacity: 0.5;
     }
 
     .footer-icon svg {
       transition: stroke 0.3s ease;
       opacity: 0.5;
+      width: 26px;
+      height: 26px;
     }
+
     .footer-icon:hover svg {
       stroke: #538aca;
     }
 
-    @media (max-width: 300px) {
+    /* Мобильные стили */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
       .header {
-        flex-direction: column;
-        align-items: flex-start; /* или center — на твой вкус */
+        padding: 10px;
+        gap: 15px;
+      }
+
+      .main-content {
+        margin-top: 100px;
+        padding: 0 15px;
+      }
+
+      .main-content h1 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+      }
+
+      .main-content p {
+        font-size: 1em;
       }
 
       .nav {
-        margin-top: 40px;
-        align-self: flex-start;
+        gap: 15px;
+      }
+
+      footer {
+        padding: 12px 0;
+      }
+
+      .footer-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .footer-copyright {
+        font-size: 0.8em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content h1 {
+        font-size: 2em;
+      }
+
+      .main-content p {
+        font-size: 0.9em;
+      }
+
+      .nav a,
+      .language-switcher a {
+        font-size: 0.9em;
+      }
+
+      .language-switcher span {
+        font-size: 1.2em;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
       }
     }
 
     * {
-      box-sizing: border-box; /* ← чтобы padding не ломал ширину */
+      box-sizing: border-box;
     }
-
   </style>
 </head>
 <body>
@@ -192,7 +277,6 @@
     <div class="language-switcher">
       <a href="#" data-lang="en">EN</a><span>|</span>
       <a href="#" class="active" data-lang="ru">RU</a>
-
     </div>
     <nav class="nav">
       <a href="projects.html">Проекты</a>
@@ -203,32 +287,24 @@
     <p>Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения.<br>Моя "компания" — это IGstarOffic, по сути, я сам.</p>
   </main>
 </div>
-<footer style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 16px 0;
-  background-color: #161a1c;
-  z-index: 1;
-">
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <div style="display: flex; gap: 24px; justify-content: center;">
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-icons">
       <a href="https://t.me/IGstarOffic" target="_blank" aria-label="Telegram" class="footer-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2L11 13" />
           <path d="M22 2L15 22L11 13L2 9L22 2Z" />
         </svg>
       </a>
       <a href="https://github.com/IGstarOffic/" target="_blank" aria-label="GitHub" class="footer-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 19C4 20.5 4 16 2 16" />
           <path d="M16 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-8 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77 5.44 5.44 0 0 0 2.5 8.52c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.6V22" />
         </svg>
       </a>
     </div>
-    <div style="margin-top: 8px; font-size: 0.9em; color: #aaa; opacity: 0.5;">
+    <div class="footer-copyright">
       © 2025 IGstarOffic. Все права защищены.
     </div>
   </div>
@@ -249,6 +325,7 @@
       navFeatures: "Проекты"
     }
   };
+
   function setLanguage(lang) {
     localStorage.setItem("lang", lang);
     const t = translations[lang];
@@ -259,12 +336,14 @@
       a.classList.toggle('active', a.dataset.lang === lang);
     });
   }
+
   document.querySelectorAll('.language-switcher a').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       setLanguage(link.dataset.lang);
     });
   });
+
   const saved = localStorage.getItem("lang") || (navigator.language.startsWith("ru") ? "ru" : "en");
   setLanguage(saved);
 
@@ -275,11 +354,12 @@
 
   document.addEventListener('mousemove', e => {
     if (!isHovering) {
-      mouseX = e.clientX; mouseY = e.clientY;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     }
   });
 
-  document.querySelectorAll('.nav a, .language-switcher a').forEach(el => {
+  document.querySelectorAll('.nav a, .language-switcher a, .footer-icon').forEach(el => {
     el.addEventListener('mouseenter', () => {
       isHovering = true;
       const rect = el.getBoundingClientRect();
@@ -288,7 +368,8 @@
       const diameter = rect.width + 20;
       cursor.style.width = cursor.style.height = diameter + 'px';
       cursor.style.borderRadius = '50%';
-      cursorX = mouseX = cx; cursorY = mouseY = cy;
+      cursorX = mouseX = cx;
+      cursorY = mouseY = cy;
     });
     el.addEventListener('mouseleave', () => {
       isHovering = false;
@@ -313,8 +394,12 @@
     css: ["body{}", ".class{color:#fff}", "@media()", "display:flex"],
     js: ["const x=1;", "function f(){ }", "console.log('Hi, IGstar!')", "async ()=>{}"]
   };
+
   const particles = [];
-  const MAX = 10, REPULSION=150, FORCE=1, PARTICLE_REPULSION=80;
+  const isMobile = window.innerWidth < 768;
+  const MAX = isMobile ? 5 : 10;
+  const REPULSION = isMobile ? 100 : 150;
+  const FORCE = 1, PARTICLE_REPULSION = 80;
   const w2 = window.innerWidth/2, h2 = window.innerHeight/2;
 
   function getRandomLifetime() {
@@ -339,11 +424,13 @@
     particles.push({el,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,w,h,t:Date.now(),lifetime});
     setTimeout(()=>fade(particles.find(p=>p.el===el)), lifetime);
   }
+
   function fade(p){
     if(!p) return;
     p.el.style.opacity=0;
     setTimeout(()=>{p.el.remove(); particles.splice(particles.indexOf(p),1)},1000);
   }
+
   function r(a){ return a[Math.floor(Math.random()*a.length)]; }
 
   function repulse(){
