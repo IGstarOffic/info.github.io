@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGstarInfo - Projects</title>
+  <link rel="icon" href="favicon-16x16.png" type="image/png">
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #161a1c;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      overflow-y: hidden; /* Убрать вертикальную прокрутку */
+    }
+
+    .container {
+      max-width: 1670px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      position: fixed;
+      z-index: 10;
+      width: 95%;
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .language-switcher a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 1em;
+    }
+
+    .language-switcher a.active {
+      color: #538aca;
+    }
+
+    .language-switcher span {
+      font-size: 1.5em;
+      color: #888;
+      font-weight: bold;
+      position: relative;
+      top: -1px;
+      padding: 0;
+      margin: 0;
+      vertical-align: middle;
+    }
+
+    .nav a:hover,
+    .language-switcher a:hover {
+      color: white;
+      transition: color 0.2s ease;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      z-index: 10;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 1em;
+      position: relative;
+    }
+
+    .main-content {
+      margin-top: 150px;
+      position: relative;
+      z-index: 5;
+      padding: 0 20px;
+      height: calc(100vh - 200px); /* Фиксированная высота */
+      overflow-y: auto; /* Прокрутка только внутри контента */
+    }
+
+    .projects-title {
+      font-size: 3em;
+      color: #538aca;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+      padding-bottom: 50px; /* Добавляем место внизу */
+    }
+
+    .project-card {
+      background: rgba(30, 35, 40, 0.7);
+      border-radius: 10px;
+      padding: 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(83, 138, 202, 0.3);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(83, 138, 202, 0.2);
+    }
+
+    .project-title {
+      font-size: 1.5em;
+      color: #538aca;
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .project-description {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      background: rgba(83, 138, 202, 0.2);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8em;
+    }
+
+    .project-link {
+      display: inline-block;
+      color: #538aca;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #538aca;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .project-link:hover {
+      background: #538aca;
+      color: white;
+    }
+
+    #cursor {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #538aca;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 6;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease, border-radius 0.2s ease, background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: transparent;
+      font-size: 0;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    .code-particle, .circle-particle {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      opacity: 1;
+      transition: opacity 1s ease-out;
+      z-index: 1;
+    }
+
+    .code-particle.python { color: rgba(73,102,126,0.5); }
+    .code-particle.html { color: rgba(73,102,126,0.5); }
+    .code-particle.css { color: rgba(73,102,126,0.5); }
+    .code-particle.js { color: rgba(73,102,126,0.5); }
+    .circle-particle {
+      border: 1px solid rgba(83,138,202,0.3);
+      border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .projects-title { font-size: 2em; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .nav { flex-direction: column; gap: 10px; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .main-content {
+        margin-top: 180px;
+        height: calc(100vh - 230px);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="language-switcher">
+      <a href="#" class="active" data-lang="en">EN</a><span>|</span>
+      <a href="#" data-lang="ru">RU</a>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1 class="projects-title">My Projects</h1>
+    <div class="projects-grid">
+      <div class="project-card" data-project="english-for-kids">
+        <h2 class="project-title">EnglishForKids</h2>
+        <p class="project-description">
+          EnglishForKids is an educational project aimed at helping children learn English through engaging video content.
+          Currently, the Telegram bot is not working.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Telegram API</span>
+          <span class="tech-tag">Rutube API</span>
+        </div>
+        <a href="https://igstaroffic.github.io/EnglishForKids/" class="project-link" target="_blank">View</a>
+      </div>
+
+      <div class="project-card" data-project="region-code">
+        <h2 class="project-title">RegionCodeBot</h2>
+        <p class="project-description">
+          RegionCodeBot is a convenient Telegram bot that helps quickly identify the Russian region by the code on a car license plate.
+          A simple and functional tool for drivers, car enthusiasts and anyone working with vehicles.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Telegram API</span>
+        </div>
+        <a href="https://t.me/RegionCodeBot" class="project-link" target="_blank">View</a>
+      </div>
+    </div>
+  </main>
+</div>
+<div id="cursor"></div>
+<script>
+  /* ========== Language Switcher ========== */
+  const translations = {
+    en: {
+      title: "My Projects",
+      navHome: "Home",
+      projects: {
+        "english-for-kids": {
+          title: "EnglishForKids",
+          description: "EnglishForKids is an educational project aimed at helping children learn English through engaging video content. Currently, the Telegram bot is not working."
+        },
+        "region-code": {
+          title: "RegionCodeBot",
+          description: "RegionCodeBot is a convenient Telegram bot that helps quickly identify the Russian region by the code on a car license plate. A simple and functional tool for drivers, car enthusiasts and anyone working with vehicles."
+        }
+      },
+      viewButton: "View"
+    },
+    ru: {
+      title: "Мои проекты",
+      navHome: "Главная",
+      projects: {
+        "english-for-kids": {
+          title: "EnglishForKids",
+          description: "EnglishForKids - это образовательный проект, направленный на помощь детям в изучении английского языка через увлекательный видеоконтент. На данный момент ТГ-бот не работает."
+        },
+        "region-code": {
+          title: "RegionCodeBot",
+          description: "RegionCodeBot – это удобный Telegram-бот, который помогает быстро определить регион России по коду на автомобильном номере. Простой и функциональный инструмент для водителей, автолюбителей и всех, кто работает с транспортными средствами."
+        }
+      },
+      viewButton: "Посмотреть"
+    }
+  };
+
+  function setLanguage(lang) {
+    localStorage.setItem("lang", lang);
+    const t = translations[lang];
+
+    // Update UI elements
+    document.querySelector('.projects-title').textContent = t.title;
+    document.querySelectorAll('.nav a')[0].textContent = t.navHome;
+
+    // Update language switcher
+    document.querySelectorAll('.language-switcher a').forEach(a => {
+      a.classList.toggle('active', a.dataset.lang === lang);
+    });
+
+    // Update project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      const projectId = card.dataset.project;
+      const projectData = t.projects[projectId];
+
+      if (projectData) {
+        card.querySelector('.project-title').textContent = projectData.title;
+        card.querySelector('.project-description').textContent = projectData.description;
+        card.querySelector('.project-link').textContent = t.viewButton;
+      }
+    });
+  }
+
+  document.querySelectorAll('.language-switcher a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      setLanguage(link.dataset.lang);
+    });
+  });
+
+  const saved = localStorage.getItem("lang") || (navigator.language.startsWith("ru") ? "ru" : "en");
+  setLanguage(saved);
+
+  /* ========== Cursor ========== */
+  const cursor = document.getElementById('cursor');
+  let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+  let isHovering = false;
+
+  document.addEventListener('mousemove', e => {
+    if (!isHovering) {
+      mouseX = e.clientX; mouseY = e.clientY;
+    }
+  });
+
+  document.querySelectorAll('.nav a, .language-switcher a').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      isHovering = true;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const diameter = rect.width + 20;
+      cursor.style.width = cursor.style.height = diameter + 'px';
+      cursor.style.borderRadius = '50%';
+      cursorX = mouseX = cx; cursorY = mouseY = cy;
+    });
+    el.addEventListener('mouseleave', () => {
+      isHovering = false;
+      cursor.style.width = cursor.style.height = '10px';
+      cursor.style.borderRadius = '50%';
+      cursor.style.backgroundColor = '#538aca';
+      cursor.style.color = 'transparent';
+      cursor.style.fontSize = '0';
+    });
+  });
+
+  // Handle "View" buttons
+  document.querySelectorAll('.project-link').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '30px';
+      cursor.style.height = '30px';
+      cursor.style.backgroundColor = 'white';
+      cursor.style.color = '#161a1c';
+      cursor.style.fontSize = '10px';
+      const lang = localStorage.getItem("lang") || 'en';
+      cursor.textContent = lang === 'ru' ? 'клик' : 'click';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      cursor.style.backgroundColor = '#538aca';
+      cursor.style.color = 'transparent';
+      cursor.style.fontSize = '0';
+      cursor.textContent = '';
+    });
+  });
+
+  function animateCursor() {
+    const easing = 0.2;
+    cursorX += (mouseX - cursorX) * easing;
+    cursorY += (mouseY - cursorY) * easing;
+    cursor.style.transform = `translate(-50%, -50%) translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  /* ========== Particles ========== */
+  const codeSnippets = {
+    python: ["def fn():", "import numpy as np", "class MyClass:", "for i in range(5):", "print('Hi, IGstar!')"],
+    html: ["<div></div>", "<img src='IGstar.png'>", "<a href='#'>Link</a>", "<ul><li/></ul>"],
+    css: ["body{}", ".class{color:#fff}", "@media()", "display:flex"],
+    js: ["const x=1;", "function f(){ }", "console.log('Hi, IGstar!')", "async ()=>{}"]
+  };
+  const particles = [];
+  const MAX = 20, REPULSION=150, FORCE=.8, PARTICLE_REPULSION=80;
+  const w2 = window.innerWidth/2, h2 = window.innerHeight/2;
+
+  function getRandomLifetime() {
+    return 15000 + Math.random() * 15000; // 15 to 30 seconds
+  }
+
+  function create(type){
+    const el = document.createElement('div');
+    el.className = type==='code' ? `code-particle ${['python','html','css','js'][Math.floor(Math.random()*4)]}` : 'circle-particle';
+    if(type==='code') el.textContent = codeSnippets[el.classList[1]][Math.floor(Math.random()*codeSnippets[el.classList[1]].length)];
+    const w = type==='circle' ? 20+Math.random()*80 : el.offsetWidth;
+    const h = type==='circle' ? w : el.offsetHeight;
+    const x = Math.random()*innerWidth, y=Math.random()*innerHeight,
+            angle=Math.random()*2*Math.PI, speed=.1+Math.random()*.3;
+    el.style.left=x+'px'; el.style.top=y+'px';
+    if(type==='circle'){
+      el.style.width=el.style.height=w+'px';
+      if(Math.random()>0.7) el.style.borderStyle='dashed';
+    }
+    document.body.appendChild(el);
+    const lifetime = getRandomLifetime();
+    particles.push({el,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,w,h,t:Date.now(),lifetime});
+    setTimeout(()=>{
+      const p = particles.find(p=>p.el===el);
+      if(p) {
+        p.el.style.opacity=0;
+        setTimeout(()=>{
+          p.el.remove();
+          particles.splice(particles.indexOf(p),1);
+        },1000);
+      }
+    }, lifetime);
+  }
+
+  function update(){
+    const now=Date.now();
+
+    // Particle repulsion
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distance = Math.hypot(dx, dy);
+
+        if (distance < PARTICLE_REPULSION && distance > 0) {
+          const force = FORCE * 0.5 * (1 - distance / PARTICLE_REPULSION);
+          const fx = dx / distance * force;
+          const fy = dy / distance * force;
+
+          p1.vx += fx;
+          p1.vy += fy;
+          p2.vx -= fx;
+          p2.vy -= fy;
+        }
+      }
+    }
+
+    particles.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x+p.w>innerWidth){p.vx*=-.8; p.x=Math.max(0, Math.min(p.x, innerWidth-p.w));}
+      if(p.y<0||p.y+p.h>innerHeight){p.vy*=-.8; p.y=Math.max(0, Math.min(p.y, innerHeight-p.h));}
+      // mouse repulse
+      const dx=p.x - mouseX, dy=p.y - mouseY, d=Math.hypot(dx,dy);
+      if(d<REPULSION && d>0){
+        const f=FORCE*(1-d/REPULSION);
+        p.vx += dx/d * f;
+        p.vy += dy/d * f;
+      }
+      p.vx*=.995; p.vy*=.995;
+      p.el.style.left=p.x+'px'; p.el.style.top=p.y+'px';
+      if(now - p.t > p.lifetime*1.2) {
+        p.el.style.opacity=0;
+        setTimeout(()=>{
+          p.el.remove();
+          particles.splice(particles.indexOf(p),1);
+        },1000);
+      }
+    });
+
+    if(particles.length<MAX){
+      if(Math.random()<.5) create('code'); else create('circle');
+    }
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener('resize',()=>{
+    particles.forEach(p=>{
+      p.x=Math.min(p.x, innerWidth-p.w);
+      p.y=Math.min(p.y, innerHeight-p.h);
+    });
+  });
+
+  // init
+  for(let i=0;i<10;i++) setTimeout(()=>Math.random()<.5 ? create('code') : create('circle'), i*300);
+  requestAnimationFrame(update);
+</script>
+</body>
+</html>
