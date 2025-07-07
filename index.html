@@ -390,6 +390,7 @@
       link.addEventListener('click', e => {
         e.preventDefault();
         setLanguage(link.dataset.lang);
+        window.location.reload();
       });
     });
 
