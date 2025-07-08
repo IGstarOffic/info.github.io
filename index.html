@@ -410,6 +410,14 @@
 
   // Анимация для десктопной версии
   function initDesktopAnimation() {
+    // Если экран узкий (как у мобилки) — НЕ запускаем десктопную анимацию
+    if (window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches) {
+      return; // Прерываем функцию
+    }
+
+    // Очищаем старые частицы (если они есть)
+    document.querySelectorAll('.code-particle, .circle-particle').forEach(el => el.remove());
+    
     /* ========== Cursor ========== */
     const cursor = document.getElementById('cursor');
     let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
@@ -560,6 +568,7 @@
 
   // Анимация для мобильной версии
   function initMobileAnimation() {
+    document.querySelectorAll('.code-particle, .circle-particle').forEach(el => el.remove());
     // Физика кружков
     class Bubble {
       constructor(x, y, size) {
