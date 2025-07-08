@@ -796,12 +796,11 @@
       requestAnimationFrame(update);
     }
 
-    window.addEventListener('resize', () => {
-      // Очищаем все частицы
-      document.querySelectorAll('.code-particle, .circle-particle, .bubble').forEach(el => el.remove());
-
-      // Перезапускаем проверку режима
-      checkScreenMode();
+    window.addEventListener('resize',()=>{
+      particles.forEach(p=>{
+        p.x=Math.min(p.x, innerWidth-p.w);
+        p.y=Math.min(p.y, innerHeight-p.h);
+      });
     });
 
     // init
@@ -961,30 +960,6 @@
       initDesktopAnimation();
     }
   }
-
-  function checkScreenMode() {
-    const isMobileView = window.innerWidth <= 768;
-    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-    // Если мобильный режим — запускаем мобильную анимацию
-    if (isMobileView || isTouchDevice) {
-      if (window.desktopAnimationRunning) {
-        // Останавливаем десктопную анимацию (если была)
-        cancelAnimationFrame(window.desktopAnimationFrame);
-        window.desktopAnimationRunning = false;
-      }
-      initMobileAnimation();
-    }
-    // Иначе — десктопный режим
-    else {
-      initDesktopAnimation();
-      window.desktopAnimationRunning = true;
-    }
-  }
-
-  // Запускаем при загрузке и при ресайзе
-  window.addEventListener('load', checkScreenMode);
-  window.addEventListener('resize', checkScreenMode);
 
   // Запускаем при загрузке и при ресайзе
   window.addEventListener('load', initResponsiveMode);
