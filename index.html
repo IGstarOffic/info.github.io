@@ -22,7 +22,7 @@
     }
 
     /* Стили для десктопной версии */
-    @media (min-width: 769px) {
+    @media (min-width: 769px) and (pointer: fine) {
       body {
         overflow: hidden;
         -webkit-user-select: none;
@@ -198,7 +198,7 @@
     }
 
     /* Стили для мобильной версии */
-    @media (max-width: 768px) {
+    @media (max-width: 768px), (pointer: coarse) {
       body {
         touch-action: manipulation;
         width: 100vw;
@@ -357,7 +357,10 @@
 
 <script>
   // Проверка типа устройства
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isMobile = (
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+          (window.matchMedia("(pointer: coarse)").matches)
+  );
 
   // Общие функции для всех устройств
   const translations = {
@@ -390,6 +393,7 @@
       link.addEventListener('click', e => {
         e.preventDefault();
         setLanguage(link.dataset.lang);
+        window.location.reload();
       });
     });
 
@@ -695,6 +699,23 @@
     initBubbles();
     animate();
   }
+
+  function initResponsiveMode() {
+    const isNarrowScreen = window.innerWidth <= 768;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
+    // Если узкий экран ИЛИ тачскрин — запускаем мобильную анимацию
+    if (isNarrowScreen || isTouchDevice) {
+      initMobileAnimation();
+    } else {
+      initDesktopAnimation();
+    }
+  }
+
+  // Запускаем при загрузке и при ресайзе
+  window.addEventListener('load', initResponsiveMode);
+  window.addEventListener('resize', initResponsiveMode);
+
 </script>
 </body>
 </html>
