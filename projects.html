@@ -130,11 +130,12 @@
 
       .projects-container {
         margin-top: 100px;
-        display: grid;
+        display: flex;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
         padding: 20px;
         position: relative;
+        justify-content: center;
         z-index: 5;
       }
 
@@ -147,6 +148,7 @@
         backdrop-filter: blur(5px);
         overflow: hidden;
         position: relative;
+        width: 350px;
       }
 
       .project-card:hover {
