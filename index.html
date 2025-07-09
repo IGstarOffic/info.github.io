@@ -3,10 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content='Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения. Моя "компания" — это IGstarOffic, по сути, я сам.'>
+  <meta name="keywords" content="IGstarOffic, IGstar, IGstarOfficial, IGstar, разработчик, программист">
+  <meta name="author" content="IGstarOffic">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="yandex" content="index, follow">
+  <meta property="og:title" content="IGstarInfo">
+  <meta property="og:description" content='Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения. Моя "компания" — это IGstarOffic, по сути, я сам.'>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://igstaroffic.github.io/info.github.io">
+  <meta property="og:image" content="https://igstaroffic.github.io/info.github.io/favicon-16x16.png">
+  <meta property="og:site_name" content="IGstarInfo">
   <title>IGstarInfo</title>
   <link rel="icon" href="favicon-16x16.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon-16x16.png">
   <style>
-    /* Общие стили для всех устройств */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,304 +30,134 @@
       font-family: 'JetBrains Mono', monospace;
       background-color: #161a1c;
       color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       position: relative;
-      overflow: hidden;
+      touch-action: manipulation;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
-    /* Стили для десктопной версии */
-    @media (min-width: 769px) and (pointer: fine) {
-      body {
-        overflow: hidden;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      .container {
-        max-width: 1670px;
-        margin: 0 auto;
-        padding: 30px;
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 16px;
-        max-width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-        flex-wrap: wrap;
-      }
-
-      .language-switcher {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        line-height: 1;
-      }
-
-      .language-switcher a {
-        text-decoration: none;
-        color: #ffffff;
-        font-weight: bold;
-        padding: 0;
-        margin: 0;
-        font-family: 'Orbitron', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 1em;
-      }
-
-      .language-switcher a.active {
-        color: #538aca;
-      }
-
-      .language-switcher span {
-        font-size: 1.5em;
-        color: #888;
-        font-weight: bold;
-        position: relative;
-        top: -1px;
-        padding: 0;
-        margin: 0;
-        vertical-align: middle;
-      }
-
-      .nav a:hover,
-      .language-switcher a:hover {
-        color: white;
-        transition: color 0.2s ease;
-        z-index: 10;
-      }
-
-      .nav {
-        display: flex;
-        gap: 20px;
-        z-index: 10;
-      }
-
-      .nav a {
-        text-decoration: none;
-        color: #ffffff;
-        font-weight: bold;
-        z-index: 10;
-        font-family: 'Orbitron', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 1em;
-        position: relative;
-      }
-
-      .main-content {
-        text-align: center;
-        margin-top: 150px;
-        position: relative;
-        z-index: 5;
-      }
-
-      .main-content h1 {
-        font-size: 4em;
-        color: #538aca;
-        font-family: 'Montserrat', sans-serif;
-        margin-bottom: 10px;
-      }
-
-      .main-content p {
-        font-size: 1.2em;
-        color: #fff;
-      }
-
-      #cursor {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #538aca;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 6;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
-      }
-
-      .code-particle, .circle-particle {
-        position: absolute;
-        pointer-events: none;
-        user-select: none;
-        opacity: 1;
-        transition: opacity 1s ease-out;
-        z-index: 1;
-      }
-
-      .code-particle.python { color: rgba(73,102,126,0.5); }
-      .code-particle.html   { color: rgba(73,102,126,0.5); }
-      .code-particle.css    { color: rgba(73,102,126,0.5); }
-      .code-particle.js     { color: rgba(73,102,126,0.5); }
-      .circle-particle {
-        border: 1px solid rgba(83,138,202,0.3);
-        border-radius: 50%;
-      }
-
-      footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        padding: 16px 0;
-        background-color: #161a1c;
-        z-index: 1;
-      }
-
-      .footer-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .footer-links {
-        display: flex;
-        gap: 24px;
-        justify-content: center;
-      }
-
-      .footer-icon svg {
-        transition: stroke 0.3s ease;
-        opacity: 0.5;
-      }
-      .footer-icon:hover svg {
-        stroke: #538aca;
-      }
-
-      .copyright {
-        margin-top: 8px;
-        font-size: 0.9em;
-        color: #aaa;
-        opacity: 0.5;
-      }
+    .header {
+      padding: 16px;
+      background-color: #1e2326;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
     }
 
-    /* Стили для мобильной версии */
-    @media (max-width: 768px), (pointer: coarse) {
-      body {
-        touch-action: manipulation;
-        width: 100vw;
-        height: 100vh;
-      }
+    .language-switcher {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
 
-      .header {
-        padding: 16px;
-        background-color: #1e2326;
-        display: flex;
-        padding: 20px;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        z-index: 10;
-      }
+    .language-switcher a {
+      color: #aaa;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.9em;
+      transition: color 0.3s ease;
+    }
 
-      .language-switcher {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
-      }
+    .language-switcher a.active,
+    .language-switcher a:hover {
+      color: #538aca;
+    }
 
-      .language-switcher a {
-        color: #aaa;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 0.9em;
-      }
+    .nav {
+      display: flex;
+      gap: 16px;
+    }
 
-      .language-switcher a.active {
-        color: #538aca;
-      }
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
 
-      .nav {
-        display: flex;
-        gap: 16px;
-      }
+    .nav a:hover {
+      color: #538aca;
+    }
 
-      .nav a {
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.95em;
-        text-transform: uppercase;
-      }
+    .main-content {
+      padding: 40px 20px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
 
-      .main-content {
-        padding: 40px 20px;
-        text-align: center;
-        position: relative;
-        z-index: 10;
-      }
+    .main-content h1 {
+      font-size: 2.2em;
+      color: #538aca;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 12px;
+    }
 
-      .main-content h1 {
-        font-size: 2.2em;
-        color: #538aca;
-        font-family: 'Montserrat', sans-serif;
-        margin-bottom: 12px;
-      }
+    .main-content p {
+      font-size: 1em;
+      line-height: 1.5;
+    }
 
-      .main-content p {
-        font-size: 1em;
-        line-height: 1.5;
-      }
+    footer {
+      padding: 20px 0;
+      background-color: #1e2326;
+      text-align: center;
+      z-index: 10;
+      margin-top: auto;
+    }
 
-      footer {
-        padding: 20px 0;
-        background-color: #1e2326;
-        text-align: center;
-        position: relative;
-        z-index: 10;
-      }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 10px;
+    }
 
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-        margin-bottom: 10px;
-      }
+    .footer-links svg {
+      stroke: #aaa;
+      opacity: 0.5;
+      transition: stroke 0.3s ease;
+    }
 
-      .footer-links svg {
-        stroke: #aaa;
-        transition: stroke 0.3s ease;
-        opacity: 0.5;
-      }
+    .footer-links a:hover svg {
+      stroke: #538aca;
+    }
 
-      .footer-links a:hover svg {
-        stroke: #538aca;
-        opacity: 1;
-      }
+    .copyright {
+      font-size: 0.85em;
+      color: #888;
+      opacity: 0.6;
+    }
 
-      .copyright {
-        font-size: 0.85em;
-        color: #888;
-        opacity: 0.6;
-      }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 11;
+      border: 1px solid rgba(83, 138, 202, 0.6);
+    }
 
-      .bubble {
-        position: absolute;
-        border-radius: 50%;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        z-index: 11;
-        border: 1px solid rgba(83, 138, 202, 0.6);
-      }
-
-      .bubble.dashed {
-        border-style: dashed;
-      }
+    .bubble.dashed {
+      border-style: dashed;
     }
   </style>
 </head>
 <body>
-<!-- Общая разметка для всех устройств -->
 <div class="container">
   <header class="header">
     <div class="language-switcher">
@@ -322,7 +165,7 @@
       <a href="#" class="active" data-lang="ru">RU</a>
     </div>
     <nav class="nav">
-      <a href="projects.html">Проекты</a>
+      <a href="../projects/mobile.html">Проекты</a>
     </nav>
   </header>
   <main class="main-content">
@@ -334,14 +177,14 @@
 <footer>
   <div class="footer-content">
     <div class="footer-links">
-      <a href="https://t.me/IGstarOffic" target="_blank" aria-label="Telegram" class="footer-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <a href="https://t.me/IGstarOffic" target="_blank" aria-label="Telegram">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2L11 13" />
           <path d="M22 2L15 22L11 13L2 9L22 2Z" />
         </svg>
       </a>
-      <a href="https://github.com/IGstarOffic/" target="_blank" aria-label="GitHub" class="footer-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <a href="https://github.com/IGstarOffic/" target="_blank" aria-label="GitHub">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 19C4 20.5 4 16 2 16" />
           <path d="M16 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-8 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77 5.44 5.44 0 0 0 2.5 8.52c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.6V22" />
         </svg>
@@ -353,26 +196,16 @@
   </div>
 </footer>
 
-<!-- Курсор для десктопной версии -->
-<div id="cursor"></div>
-
 <script>
-  // Проверка типа устройства
-  const isMobile = (
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-          (window.matchMedia("(pointer: coarse)").matches)
-  );
-
-  // Общие функции для всех устройств
   const translations = {
     en: {
       title: "IGstarOffic",
-      description: "Hi! My name is IGstar, and I'm a developer who turns ideas into working solutions.<br>My \"company\" is IGstarOffic, which is essentially me.",
+      description: 'Hi! My name is IGstar, and I\'m a developer who turns ideas into working solutions.<br>My "company" is IGstarOffic, which is essentially me.',
       navFeatures: "Projects"
     },
     ru: {
       title: "IGstarOffic",
-      description: "Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения.<br>Моя \"компания\" — это IGstarOffic, по сути, я сам.",
+      description: 'Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения.<br>Моя "компания" — это IGstarOffic, по сути, я сам.',
       navFeatures: "Проекты"
     }
   };
@@ -388,7 +221,6 @@
     });
   }
 
-  // Инициализация языка
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.language-switcher a').forEach(link => {
       link.addEventListener('click', e => {
@@ -400,176 +232,10 @@
     const saved = localStorage.getItem("lang") || (navigator.language.startsWith("ru") ? "ru" : "en");
     setLanguage(saved);
 
-    // Запуск соответствующей анимации
-    if (isMobile) {
-      initMobileAnimation();
-    } else {
-      initDesktopAnimation();
-    }
+    initMobileAnimation();
   });
 
-  // Анимация для десктопной версии
-  function initDesktopAnimation() {
-    // Если экран узкий (как у мобилки) — НЕ запускаем десктопную анимацию
-    if (window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches) {
-      return; // Прерываем функцию
-    }
-
-    // Очищаем старые частицы (если они есть)
-    document.querySelectorAll('.code-particle, .circle-particle').forEach(el => el.remove());
-
-    /* ========== Cursor ========== */
-    const cursor = document.getElementById('cursor');
-    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-    let isHovering = false;
-
-    document.addEventListener('mousemove', e => {
-      if (!isHovering) {
-        mouseX = e.clientX; mouseY = e.clientY;
-      }
-    });
-
-    document.querySelectorAll('.nav a, .language-switcher a').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        isHovering = true;
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top + rect.height/2;
-        const diameter = rect.width + 20;
-        cursor.style.width = cursor.style.height = diameter + 'px';
-        cursor.style.borderRadius = '50%';
-        cursorX = mouseX = cx; cursorY = mouseY = cy;
-      });
-      el.addEventListener('mouseleave', () => {
-        isHovering = false;
-        cursor.style.width = cursor.style.height = '10px';
-        cursor.style.borderRadius = '50%';
-      });
-    });
-
-    function animateCursor() {
-      const easing = 0.2;
-      cursorX += (mouseX - cursorX) * easing;
-      cursorY += (mouseY - cursorY) * easing;
-      cursor.style.transform = `translate(-50%, -50%) translate3d(${cursorX}px, ${cursorY}px, 0)`;
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    /* ========== Particles ========== */
-    const codeSnippets = {
-      python: ["def fn():", "import numpy as np", "class MyClass:", "for i in range(5):", "print('Hi, IGstar!')"],
-      html: ["<div></div>", "<img src='IGstar.png'>", "<a href='#'>Link</a>", "<ul><li/></ul>"],
-      css: ["body{}", ".class{color:#fff}", "@media()", "display:flex"],
-      js: ["const x=1;", "function f(){ }", "console.log('Hi, IGstar!')", "async ()=>{}"]
-    };
-    const particles = [];
-    const MAX = 10, REPULSION=150, FORCE=1, PARTICLE_REPULSION=80;
-    const w2 = window.innerWidth/2, h2 = window.innerHeight/2;
-
-    function getRandomLifetime() {
-      return 5000 + Math.random() * 5000;
-    }
-
-    function create(type){
-      const el = document.createElement('div');
-      el.className = type==='code' ? `code-particle ${r(['python','html','css','js'])}` : 'circle-particle';
-      if(type==='code') el.textContent = r(codeSnippets[el.classList[1]]);
-      const w = type==='circle' ? 20+Math.random()*80 : el.offsetWidth;
-      const h = type==='circle' ? w : el.offsetHeight;
-      const x = Math.random()*innerWidth, y=Math.random()*innerHeight,
-              angle=Math.random()*2*Math.PI, speed=.1+Math.random()*.3;
-      el.style.left=x+'px'; el.style.top=y+'px';
-      if(type==='circle'){
-        el.style.width=el.style.height=w+'px';
-        if(Math.random()>0.7) el.style.borderStyle='dashed';
-      }
-      document.body.appendChild(el);
-      const lifetime = getRandomLifetime();
-      particles.push({el,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,w,h,t:Date.now(),lifetime});
-      setTimeout(()=>fade(particles.find(p=>p.el===el)), lifetime);
-    }
-    function fade(p){
-      if(!p) return;
-      p.el.style.opacity=0;
-      setTimeout(()=>{p.el.remove(); particles.splice(particles.indexOf(p),1)},1000);
-    }
-    function r(a){ return a[Math.floor(Math.random()*a.length)]; }
-
-    function repulse(){
-      particles.forEach(p=>{
-        const dx=p.x-w2, dy=p.y-h2, d=Math.hypot(dx,dy);
-        if(d<REPULSION && d>0){
-          const f=FORCE*(1-d/REPULSION);
-          p.vx += dx/d * f;
-          p.vy += dy/d * f;
-        }
-      });
-    }
-
-    function update(){
-      const now=Date.now();
-
-      // Отталкивание частиц друг от друга
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const p1 = particles[i];
-          const p2 = particles[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.hypot(dx, dy);
-
-          if (distance < PARTICLE_REPULSION && distance > 0) {
-            const force = FORCE * 0.5 * (1 - distance / PARTICLE_REPULSION);
-            const fx = dx / distance * force;
-            const fy = dy / distance * force;
-
-            p1.vx += fx;
-            p1.vy += fy;
-            p2.vx -= fx;
-            p2.vy -= fy;
-          }
-        }
-      }
-
-      particles.forEach(p=>{
-        p.x+=p.vx; p.y+=p.vy;
-        if(p.x<0||p.x+p.w>innerWidth){p.vx*=-.8; p.x=Math.max(0, Math.min(p.x, innerWidth-p.w));}
-        if(p.y<0||p.y+p.h>innerHeight){p.vy*=-.8; p.y=Math.max(0, Math.min(p.y, innerHeight-p.h));}
-        // mouse repulse
-        const dx=p.x - mouseX, dy=p.y - mouseY, d=Math.hypot(dx,dy);
-        if(d<REPULSION && d>0){
-          const f=FORCE*(1-d/REPULSION);
-          p.vx += dx/d * f;
-          p.vy += dy/d * f;
-        }
-        p.vx*=.995; p.vy*=.995;
-        p.el.style.left=p.x+'px'; p.el.style.top=p.y+'px';
-        if(now - p.t > p.lifetime*1.2) fade(p);
-      });
-
-      if(particles.length<MAX){
-        if(Math.random()<.5) create('code'); else create('circle');
-      }
-      requestAnimationFrame(update);
-    }
-
-    window.addEventListener('resize',()=>{
-      particles.forEach(p=>{
-        p.x=Math.min(p.x, innerWidth-p.w);
-        p.y=Math.min(p.y, innerHeight-p.h);
-      });
-    });
-
-    // init
-    for(let i=0;i<10;i++) setTimeout(()=>Math.random()<.5 ? create('code') : create('circle'), i*300);
-    requestAnimationFrame(update);
-  }
-
-  // Анимация для мобильной версии
   function initMobileAnimation() {
-    document.querySelectorAll('.code-particle, .circle-particle').forEach(el => el.remove());
-    // Физика кружков
     class Bubble {
       constructor(x, y, size) {
         this.x = x;
@@ -579,12 +245,7 @@
         this.vy = (Math.random() - 0.5) * 0.5;
         this.element = document.createElement('div');
         this.element.className = 'bubble';
-
-        // Случайный выбор между сплошной и пунктирной обводкой
-        if (Math.random() > 0.5) {
-          this.element.classList.add('dashed');
-        }
-
+        if (Math.random() > 0.5) this.element.classList.add('dashed');
         this.element.style.width = `${size}px`;
         this.element.style.height = `${size}px`;
         this.element.style.left = `${x}px`;
@@ -596,24 +257,12 @@
         this.x += this.vx;
         this.y += this.vy;
 
-        // Отскок от границ с проверкой, чтобы не выходили за пределы
-        if (this.x < this.size/2) {
-          this.x = this.size/2;
-          this.vx *= -0.8;
-        } else if (this.x > window.innerWidth - this.size/2) {
-          this.x = window.innerWidth - this.size/2;
-          this.vx *= -0.8;
-        }
+        if (this.x < this.size / 2 || this.x > window.innerWidth - this.size / 2) this.vx *= -0.8;
+        if (this.y < this.size / 2 || this.y > window.innerHeight - this.size / 2) this.vy *= -0.8;
 
-        if (this.y < this.size/2) {
-          this.y = this.size/2;
-          this.vy *= -0.8;
-        } else if (this.y > window.innerHeight - this.size/2) {
-          this.y = window.innerHeight - this.size/2;
-          this.vy *= -0.8;
-        }
+        this.x = Math.max(this.size / 2, Math.min(window.innerWidth - this.size / 2, this.x));
+        this.y = Math.max(this.size / 2, Math.min(window.innerHeight - this.size / 2, this.y));
 
-        // Трение
         this.vx *= 0.99;
         this.vy *= 0.99;
 
@@ -624,8 +273,7 @@
       applyForce(x, y, power) {
         const dx = this.x - x;
         const dy = this.y - y;
-        const distance = Math.sqrt(dx*dx + dy*dy);
-
+        const distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < 150) {
           const force = power / (distance + 10);
           this.vx += (dx / distance) * force;
@@ -634,46 +282,40 @@
       }
     }
 
-    // Инициализация кружков
     const bubbles = [];
-    const bubbleCount = 10;
+
+    function calculateBubbleCount() {
+      return Math.floor((window.innerWidth * window.innerHeight) / 100000);
+    }
 
     function initBubbles() {
-      for (let i = 0; i < bubbleCount; i++) {
+      bubbles.forEach(b => b.element.remove());
+      bubbles.length = 0;
+      for (let i = 0; i < calculateBubbleCount(); i++) {
         const size = Math.random() * 40 + 20;
-        const x = Math.random() * (window.innerWidth - size) + size/2;
-        const y = Math.random() * (window.innerHeight - size) + size/2;
+        const x = Math.random() * (window.innerWidth - size) + size / 2;
+        const y = Math.random() * (window.innerHeight - size) + size / 2;
         bubbles.push(new Bubble(x, y, size));
       }
     }
 
-    // Обработка касаний
     function handleTap(x, y) {
-      bubbles.forEach(bubble => {
-        bubble.applyForce(x, y, 600);
-      });
+      bubbles.forEach(b => b.applyForce(x, y, 600));
     }
 
-    // Анимация
     function animate() {
-      // Обновление позиций кружков
-      bubbles.forEach(bubble => bubble.update());
-
-      // Проверка столкновений между кружками
+      bubbles.forEach(b => b.update());
       for (let i = 0; i < bubbles.length; i++) {
         for (let j = i + 1; j < bubbles.length; j++) {
           const b1 = bubbles[i];
           const b2 = bubbles[j];
           const dx = b2.x - b1.x;
           const dy = b2.y - b1.y;
-          const distance = Math.sqrt(dx*dx + dy*dy);
+          const distance = Math.sqrt(dx * dx + dy * dy);
           const minDist = (b1.size + b2.size) / 2;
-
           if (distance < minDist) {
-            // Отталкивание при столкновении
             const angle = Math.atan2(dy, dx);
             const force = (minDist - distance) * 0.05;
-
             b1.vx -= Math.cos(angle) * force;
             b1.vy -= Math.sin(angle) * force;
             b2.vx += Math.cos(angle) * force;
@@ -681,50 +323,19 @@
           }
         }
       }
-
       requestAnimationFrame(animate);
     }
 
-    // Обработчики событий
-    document.addEventListener('touchstart', (e) => {
+    document.addEventListener('click', e => handleTap(e.clientX, e.clientY));
+    document.addEventListener('touchstart', e => {
       e.preventDefault();
-      const touch = e.touches[0];
-      handleTap(touch.clientX, touch.clientY);
-    });
+      handleTap(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
 
-    document.addEventListener('click', (e) => {
-      handleTap(e.clientX, e.clientY);
-    });
-
-    // Адаптация к изменению размера экрана
-    window.addEventListener('resize', () => {
-      bubbles.forEach(bubble => {
-        if (bubble.x > window.innerWidth) bubble.x = window.innerWidth - bubble.size/2;
-        if (bubble.y > window.innerHeight) bubble.y = window.innerHeight - bubble.size/2;
-      });
-    });
-
-    // Инициализация
+    window.addEventListener('resize', initBubbles);
     initBubbles();
     animate();
   }
-
-  function initResponsiveMode() {
-    const isNarrowScreen = window.innerWidth <= 768;
-    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-    // Если узкий экран ИЛИ тачскрин — запускаем мобильную анимацию
-    if (isNarrowScreen || isTouchDevice) {
-      initMobileAnimation();
-    } else {
-      initDesktopAnimation();
-    }
-  }
-
-  // Запускаем при загрузке и при ресайзе
-  window.addEventListener('load', initResponsiveMode);
-  window.addEventListener('resize', initResponsiveMode);
-
 </script>
 </body>
 </html>
