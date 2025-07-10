@@ -27,6 +27,8 @@
     }
 
     body {
+      touch-action: manipulation;
+      padding-bottom: env(safe-area-inset-bottom);
       font-family: 'JetBrains Mono', monospace;
       background-color: #161a1c;
       color: #ffffff;
@@ -49,6 +51,11 @@
       flex-direction: column;
       align-items: center;
       z-index: 10;
+    }
+
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .language-switcher {
@@ -113,6 +120,7 @@
     }
 
     footer {
+      padding-bottom: calc(20px + env(safe-area-inset-bottom));
       padding: 20px 0;
       background-color: #1e2326;
       text-align: center;
