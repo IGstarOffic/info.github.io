@@ -317,8 +317,12 @@
     const bubbles = [];
 
     function calculateBubbleCount() {
-      return Math.floor((window.innerWidth * window.innerHeight) / 100000);
+      const screenArea = window.innerWidth * window.innerHeight;
+      const scaleFactor = window.devicePixelRatio || 1;
+      const densityFactor = window.innerWidth <= 768 ? 0.8 : 1.2;
+      return Math.floor(screenArea / (90000 / densityFactor / scaleFactor));
     }
+
 
     function initBubbles() {
       bubbles.forEach(b => b.element.remove());
