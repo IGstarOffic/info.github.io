@@ -137,6 +137,22 @@
       stroke: #538aca;
     }
 
+    .bug-report {
+      margin: 10px 0;
+    }
+
+    .bug-report a {
+      color: #aaa;
+      opacity: 0.5;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.3s ease;
+    }
+
+    .bug-report a:hover {
+      color: #538aca;
+    }
+
     .copyright {
       font-size: 0.85em;
       color: #888;
@@ -183,15 +199,18 @@
           <path d="M22 2L15 22L11 13L2 9L22 2Z" />
         </svg>
       </a>
-      
+
+      <a href="https://github.com/IGstarOffic/" target="_blank" aria-label="GitHub">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 19C4 20.5 4 16 2 16" />
           <path d="M16 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-8 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77 5.44 5.44 0 0 0 2.5 8.52c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.6V22" />
         </svg>
       </a>
     </div>
+    <div class="bug-report">
+      <a href="https://github.com/IGstarOffic/info.github.io/issues/new" target="_blank">Нашли баг?</a>
+    </div>
     <div class="copyright">
-      <a href="https://github.com/IGstarOffic/info.github.io/issues">Нашли баг?</a>
       IGstarOffic. 2023 - 2025
     </div>
   </div>
@@ -202,12 +221,14 @@
     en: {
       title: "IGstarOffic",
       description: 'Hi! My name is IGstar, and I\'m a developer who turns ideas into working solutions.<br>My "company" is IGstarOffic, which is essentially me.',
-      navFeatures: "Projects"
+      navFeatures: "Projects",
+      bugReport: "Found a bug?"
     },
     ru: {
       title: "IGstarOffic",
       description: 'Привет! Меня зовут IGstar, и я — разработчик, который превращает идеи в работающие решения.<br>Моя "компания" — это IGstarOffic, по сути, я сам.',
-      navFeatures: "Проекты"
+      navFeatures: "Проекты",
+      bugReport: "Нашли баг?"
     }
   };
 
@@ -217,6 +238,7 @@
     document.querySelector('.main-content h1').innerHTML = t.title;
     document.querySelector('.main-content p').innerHTML = t.description;
     document.querySelector('.nav a').textContent = t.navFeatures;
+    document.querySelector('.bug-report a').textContent = t.bugReport;
     document.querySelectorAll('.language-switcher a').forEach(a => {
       a.classList.toggle('active', a.dataset.lang === lang);
     });
@@ -340,3 +362,4 @@
 </script>
 </body>
 </html>
+
